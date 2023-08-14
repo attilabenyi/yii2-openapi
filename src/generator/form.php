@@ -39,7 +39,7 @@ echo $form->field($generator, 'ignoreSpecErrors')->checkbox();
     <div class="panel-body card-body">
         <?= $form->field($generator, 'modelNamespace') ?>
         <?= $form->field($generator, 'generateModelFaker')->checkbox() ?>
-		<div id="faker_opts">
+        <div id="faker_opts">
             <?= $form->field($generator, 'fakerNamespace') ?>
         </div>
         <?= $form->field($generator, 'generateModelsOnlyXTable')->checkbox() ?>
@@ -97,7 +97,7 @@ $this->registerJs(
              $('#json_api_opts').addClass('hidden');
         }
     }
-	toggleFakerOpts = function () {
+    toggleFakerOpts = function () {
         if(this.checked){
             $('#faker_opts').removeClass('hidden');
         }else{
@@ -107,6 +107,6 @@ $this->registerJs(
     $('.panel-heading .form-group input[type=checkbox]').each(togglePanel);
     $('.panel-heading .form-group input[type=checkbox]').on('click', togglePanel);
     $('#apigenerator-usejsonapi').on('click', toggleJsonApiOpts);
-	$('#apigenerator-generatemodelfaker').on('click', toggleFakerOpts);
+    $('#apigenerator-generatemodelfaker').on('click', toggleFakerOpts);
 JS
 );
