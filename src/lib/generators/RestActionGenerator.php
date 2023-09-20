@@ -69,7 +69,7 @@ class RestActionGenerator
     {
         $actions = [];
 
-        $routeData = Yii::createObject(RouteData::class, [$pathItem, $path, $this->config->urlPrefixes]);
+        $routeData = Yii::createObject(RouteData::class, [$pathItem, $path, $this->config->urlPrefixes, ['singularizeControllerAndActions' =>$this->config->singularizeControllerAndActions]]);
         foreach ($pathItem->getOperations() as $method => $operation) {
             $actions[] = $this->prepareAction($method, $operation, $routeData);
         }
@@ -131,13 +131,17 @@ class RestActionGenerator
 
     protected function resolveActionType(RouteData $routeData, string $method):string
     {
-        $actionTypes = [
-            'get' => $routeData->resolveGetActionType(),
-            'post' => 'create',
-            'patch' => 'update',
-            'put' => 'update',
-            'delete' => 'delete',
-        ];
-        return $actionTypes[$method] ?? "http-$method";
+        if($this->config->ignoreMethodForActions){
+            return $routeData->resolveGetActionType();
+        }else{
+            $actionTypes = [
+                'get' => $routeData->resolveGetActionType(),
+                'post' => 'create',
+                'patch' => 'update',
+                'put' => 'update',
+                'delete' => 'delete',
+            ];
+            return $actionTypes[$method] ?? "http-$method";
+        }
     }
 }
