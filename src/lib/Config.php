@@ -18,6 +18,7 @@ use function call_user_func;
 
 class Config extends BaseObject
 {
+    public $ignoreMethodForActions = false;
     /**
      * @var string path to the OpenAPI specification file. This can be an absolute path or a Yii path alias.
      */

@@ -131,13 +131,17 @@ class RestActionGenerator
 
     protected function resolveActionType(RouteData $routeData, string $method):string
     {
-        $actionTypes = [
-            'get' => $routeData->resolveGetActionType(),
-            'post' => 'create',
-            'patch' => 'update',
-            'put' => 'update',
-            'delete' => 'delete',
-        ];
-        return $actionTypes[$method] ?? "http-$method";
+        if($this->config->ignoreMethodForActions){
+            return $routeData->resolveGetActionType();
+        }else{
+            $actionTypes = [
+                'get' => $routeData->resolveGetActionType(),
+                'post' => 'create',
+                'patch' => 'update',
+                'put' => 'update',
+                'delete' => 'delete',
+            ];
+            return $actionTypes[$method] ?? "http-$method";
+        }
     }
 }

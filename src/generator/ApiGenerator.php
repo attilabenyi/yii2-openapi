@@ -35,6 +35,11 @@ use function is_array;
 class ApiGenerator extends Generator
 {
     /**
+     * @var bool this flag controls wether to change controller action names and url rules depending on the method
+     */
+    public $ignoreMethodForActions = false;
+    
+    /**
      * @var string path to the OpenAPI specification file. This can be an absolute path or a Yii path alias.
      */
     public $openApiPath;
@@ -226,6 +231,7 @@ class ApiGenerator extends Generator
                 [
                     [
                         'ignoreSpecErrors',
+                        'ignoreMethodForActions',
                         'generateUrls',
                         'generateModels',
                         'generateModelFaker',
@@ -242,6 +248,13 @@ class ApiGenerator extends Generator
                 ['openApiPath', 'required'],
                 ['openApiPath', 'validateSpec'],
                 ['urlPrefixes', 'validateUrlPrefixes'],
+                [
+                    ['ignoreMethodForActions'],
+                    'required',
+                    'when' => function (ApiGenerator $model) {
+                        return (bool)$model->ignoreMethodForActions;
+                    },
+                ],
                 [
                     ['urlConfigFile'],
                     'required',
@@ -351,6 +364,7 @@ class ApiGenerator extends Generator
         return array_merge(
             parent::hints(),
             [
+                'ignoreMethodForActions' => 'Controls wether to change controller action names and url rules depending on the method',
                 'openApiPath' => 'Path to the OpenAPI 3 Spec file. Type <code>@</code> to trigger autocomplete.',
                 'urlConfigFile' => 'UrlRules will be written to this file.',
                 'controllerNamespace' => 'Namespace to create controllers in. This must be resolvable via Yii alias. Default is the application controller namespace: <code>Yii::$app->controllerNamespace</code>.',
@@ -430,6 +444,7 @@ class ApiGenerator extends Generator
     {
         if (!$this->config) {
             $props = get_object_vars($this);
+            
             $excludeProps = [
                 'ignoreSpecErrors',
                 'config',
@@ -447,6 +462,7 @@ class ApiGenerator extends Generator
                 return $this->render($template, $params);
             });
         }
+        
         return $this->config;
     }
 
