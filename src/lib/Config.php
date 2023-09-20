@@ -18,7 +18,16 @@ use function call_user_func;
 
 class Config extends BaseObject
 {
+    /**
+     * @var bool this flag controls whether to change controller action names and url rules depending on the method
+     */
     public $ignoreMethodForActions = false;
+
+    /**
+     * @var bool this flag controls whether to singularize every controller and action name
+     */
+    public $singularizeControllerAndActions = false;
+
     /**
      * @var string path to the OpenAPI specification file. This can be an absolute path or a Yii path alias.
      */

@@ -69,7 +69,7 @@ class RestActionGenerator
     {
         $actions = [];
 
-        $routeData = Yii::createObject(RouteData::class, [$pathItem, $path, $this->config->urlPrefixes]);
+        $routeData = Yii::createObject(RouteData::class, [$pathItem, $path, $this->config->urlPrefixes, ['singularizeControllerAndActions' =>$this->config->singularizeControllerAndActions]]);
         foreach ($pathItem->getOperations() as $method => $operation) {
             $actions[] = $this->prepareAction($method, $operation, $routeData);
         }
