@@ -237,10 +237,7 @@ class ApiGenerator extends Generator
                     [
                         'ignoreSpecErrors',
                         'ignoreMethodForActions',
-<<<<<<< HEAD
                         'singularizeControllerAndActions',
-=======
->>>>>>> d3b0f17e3dfccb72d698abfcdd416215faaa0424
                         'generateUrls',
                         'generateModels',
                         'generateModelFaker',
@@ -265,7 +262,6 @@ class ApiGenerator extends Generator
                     },
                 ],
                 [
-<<<<<<< HEAD
                     ['singularizeControllerAndActions'],
                     'required',
                     'when' => function (ApiGenerator $model) {
@@ -273,8 +269,6 @@ class ApiGenerator extends Generator
                     },
                 ],
                 [
-=======
->>>>>>> d3b0f17e3dfccb72d698abfcdd416215faaa0424
                     ['urlConfigFile'],
                     'required',
                     'when' => function (ApiGenerator $model) {
@@ -383,12 +377,8 @@ class ApiGenerator extends Generator
         return array_merge(
             parent::hints(),
             [
-<<<<<<< HEAD
                 'ignoreMethodForActions' => 'Controls whether to change controller action names and url rules depending on the method',
                 'singularizeControllerAndActions' => 'Singularize every action and controller name',
-=======
-                'ignoreMethodForActions' => 'Controls wether to change controller action names and url rules depending on the method',
->>>>>>> d3b0f17e3dfccb72d698abfcdd416215faaa0424
                 'openApiPath' => 'Path to the OpenAPI 3 Spec file. Type <code>@</code> to trigger autocomplete.',
                 'urlConfigFile' => 'UrlRules will be written to this file.',
                 'controllerNamespace' => 'Namespace to create controllers in. This must be resolvable via Yii alias. Default is the application controller namespace: <code>Yii::$app->controllerNamespace</code>.',
