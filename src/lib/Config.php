@@ -18,7 +18,6 @@ use function call_user_func;
 
 class Config extends BaseObject
 {
-
     /**
      * @var bool this flag controls whether to change controller action names and url rules depending on the method
      */
